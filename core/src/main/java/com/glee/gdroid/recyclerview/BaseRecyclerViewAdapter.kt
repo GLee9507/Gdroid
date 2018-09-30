@@ -1,7 +1,6 @@
 package com.glee.gdroid.recyclerview
 
 import android.arch.paging.PagedListAdapter
-import android.content.Context
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.support.annotation.IdRes
