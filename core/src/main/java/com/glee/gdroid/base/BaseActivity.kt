@@ -1,11 +1,14 @@
 package com.glee.gdroid.base
 
 import android.annotation.SuppressLint
+import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.KeyEvent
+import java.lang.reflect.ParameterizedType
 
 @SuppressLint("Registered")
 /**
@@ -15,17 +18,22 @@ import android.view.KeyEvent
  */
 
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity<VM : ViewModel, B : ViewDataBinding> : AppCompatActivity() {
     abstract val layoutId: Int
+    lateinit var binding: B
+    val vm by lazy {
+        ViewModelProviders.of(this)[
+                (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VM>
+
+        ]
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DataBindingUtil
-                .setContentView<ViewDataBinding>(this, layoutId)
-                .setLifecycleOwner(this)
+        binding = DataBindingUtil
+                .setContentView(this, layoutId)
+        binding.setLifecycleOwner(this)
     }
 
-    override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
-        return super.onKeyUp(keyCode, event)
-    }
+
 }

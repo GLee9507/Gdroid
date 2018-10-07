@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+
+        <variable
+            name="vm"
+            type="com.glee.sample.MainViewModel" />
+    </data>
+
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -10,9 +17,10 @@
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-            android:id="@+id/recycler"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            app:itemBinder="@{vm.itemBinder}"
+            app:itemData="@{vm.itemData}"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>
