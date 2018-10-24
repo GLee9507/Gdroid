@@ -1,5 +1,6 @@
 package com.glee.sample
 
+import android.graphics.Color
 import android.os.Bundle
 import com.glee.gdroid.base.BaseActivity
 import com.glee.gdroid.recyclerview.BaseItemData

@@ -1,7 +1,6 @@
 package com.glee.gdroid.recyclerview
 
 import android.arch.paging.DataSource
-import android.arch.paging.ItemKeyedDataSource
 import android.arch.paging.PageKeyedDataSource
 
 /**
@@ -14,7 +13,10 @@ import android.arch.paging.PageKeyedDataSource
 class SimpleBaseDataSource<V : BaseItemData>(
         private val loadData: (params: LoadParams<Int>, callback: LoadCallback<Int, V>) -> Unit
 ) : PageKeyedDataSource<Int, V>() {
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, V>)=loadData(params, callback)
+
+
+    override fun loadAfter(params: LoadParams<Int>,
+                           callback: LoadCallback<Int, V>) = loadData.invoke(params, callback)
 
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, V>) {}
@@ -27,7 +29,6 @@ class SimpleBaseDataSource<V : BaseItemData>(
             }
         })
     }
-
 
 
     companion object {

@@ -34,6 +34,4 @@ abstract class BaseActivity<VM : ViewModel, B : ViewDataBinding> : AppCompatActi
                 .setContentView(this, layoutId)
         binding.setLifecycleOwner(this)
     }
-
-
 }

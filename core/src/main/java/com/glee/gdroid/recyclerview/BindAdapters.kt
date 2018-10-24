@@ -16,14 +16,14 @@ object BindAdapters {
 
     @JvmStatic
     @BindingAdapter("app:itemData", "app:itemBinder")
-    fun itemData(recyclerView: RecyclerView, itemData: PagedList<out BaseItemData>?, itemBinder: ItemBinder) {
+    fun itemData(recyclerView: RecyclerView, itemData: PagedList<out BaseItemData>?, itemBinder: ItemBinder<out BaseItemData>) {
         var adapter: RecyclerView.Adapter<*>? = recyclerView.adapter
         if (adapter == null) {
-            adapter = SimpleListAdapter<BaseItemData>(itemBinder)
+            adapter = SimpleListAdapter(itemBinder)
             recyclerView.adapter = adapter
         }
         if (adapter is SimpleListAdapter<*>) {
-            (adapter as SimpleListAdapter<*>?)?.uncheckSubmitList(itemData)
+            adapter.uncheckSubmitList(itemData)
         }
     }
 }

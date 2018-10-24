@@ -37,6 +37,7 @@ dependencies {
 //    implementation 'com.android.support:design:28.0.0'
 
     api "android.arch.lifecycle:extensions:$lifecycle_version"
+
     kapt "android.arch.lifecycle:compiler:$lifecycle_version"
 
     api "android.arch.persistence.room:runtime:$lifecycle_version"
