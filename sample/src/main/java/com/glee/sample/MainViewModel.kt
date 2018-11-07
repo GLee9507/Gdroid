@@ -16,6 +16,4 @@ class MainViewModel : ViewModel() {
         }
         callback.onResult(array.toList(), params.key + 1)
     }
-
-
 }
